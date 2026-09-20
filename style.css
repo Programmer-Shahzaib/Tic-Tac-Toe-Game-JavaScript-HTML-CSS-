@@ -1,0 +1,293 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 10% 10%, #263b8f, transparent 35%),
+        radial-gradient(circle at 90% 80%, #641f78, transparent 35%),
+        #10152f;
+    color: white;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+/* =========================
+    SCORE CARDS
+========================= */
+#Count {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    margin-top: 12px;
+}
+#player1,
+#player2 {
+    width: 125px;
+    height: 65px;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.3);
+    transition: 0.3s ease;
+}
+#player1:hover,
+#player2:hover {
+    transform: translateY(-4px);
+    box-shadow:
+        0 0 20px rgba(108, 99, 255, 0.6);
+}
+#player1 h4,
+#player2 h4 {
+    color: #c9c9ff;
+    font-size: 15px;
+    margin-bottom: 2px;
+}
+#p1,
+#p2 {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+/* =========================
+    TITLE
+========================= */
+h1 {
+    margin-top: 12px;
+    font-size: 2.7rem;
+    color: white;
+    text-shadow:
+        0 0 10px #6c63ff,
+        0 0 20px #6c63ff,
+        0 0 35px rgba(108, 99, 255, 0.5);
+}
+
+/* =========================
+   GAME CONTAINER
+========================= */
+#container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+}
+/* =========================
+   GAME BOARD
+========================= */
+#game {
+    width: 400px;
+    height: 400px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 22px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow:
+        0 0 30px rgba(108, 99, 255, 0.25),
+        inset 0 0 20px rgba(255, 255, 255, 0.03);
+}
+/* =========================
+   GAME BOXES
+========================= */
+.box {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.09);
+    color: white;
+    font-size: 55px;
+    font-weight: bold;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.25);
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+/* BOX HOVER */
+.box:hover {
+    transform: scale(1.04);
+    background: rgba(108, 99, 255, 0.2);
+    box-shadow:
+        0 0 18px rgba(108, 99, 255, 0.6);
+}
+/* BOX CLICK */
+.box:active {
+    transform: scale(0.95);
+}
+/* =========================
+   RESET BUTTON
+========================= */
+#reset-button {
+    width: 150px;
+    padding: 10px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(
+        135deg,
+        #6c63ff,
+        #9b5cff
+    );
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow:
+        0 5px 18px rgba(108, 99, 255, 0.4);
+    transition: 0.25s ease;
+}
+#reset-button:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 0 22px rgba(108, 99, 255, 0.8);
+}
+#reset-button:active {
+    transform: scale(0.95);
+}
+/* =========================
+   NEW GAME BUTTON
+========================= */
+#new-button {
+    width: 150px;
+    padding: 10px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(
+        135deg,
+        #6c63ff,
+        #9b5cff
+    );
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow:
+        0 5px 18px rgba(108, 99, 255, 0.4);
+    transition: 0.25s ease;
+}
+#new-button:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 0 22px rgba(108, 99, 255, 0.8);
+}
+#new-button:active {
+    transform: scale(0.95);
+}
+/* =========================
+   WINNER MESSAGE
+========================= */
+#message-container {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 10px;
+}
+#msg {
+    color: white;
+    font-size: 5vmin;
+    font-weight: bold;
+    text-shadow:
+        0 0 10px #7ee081,
+        0 0 20px #7ee081;
+}
+
+
+
+
+
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+@media (max-width: 600px) {
+    #Count {
+        gap: 12px;
+    }
+    #player1,
+    #player2 {
+        width: 120px;
+        height: 65px;
+    }
+
+    h1 {
+        font-size: 2.2rem;
+    }
+    #game {
+        width: 90vw;
+        height: 90vw;
+        gap: 8px;
+        padding: 10px;
+    }
+    #box {
+        font-size: 12vw;
+        border-radius: 14px;
+    }
+    #reset-button,
+    #new-button {
+        width: 140px;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+    #game {
+        width: min(70vw, 480px);
+        height: min(70vw, 480px);
+        gap: 10px;
+        padding: 12px;
+    }
+    #box {
+        font-size: clamp(42px, 8vw, 68px);
+    }
+    h1 {
+        font-size: clamp(2.3rem, 5vw, 2.7rem);
+    }
+}
+
+@media (max-width: 400px) {
+    #Count {
+        gap: 8px;
+    }
+    #player1,
+    #player2 {
+        width: min(38vw, 120px);
+        height: 60px;
+    }
+    h1 {
+        font-size: 1.9rem;
+    }
+    #game {
+        width: calc(100vw - 24px);
+        height: calc(100vw - 24px);
+        gap: 6px;
+        padding: 8px;
+        border-radius: 18px;
+    }
+    #box {
+        font-size: 19vw;
+        border-radius: 11px;
+    }
+    #reset-button,
+    #new-button {
+        width: 130px;
+        font-size: 16px;
+    }
+}
