@@ -67,7 +67,7 @@ const showWinner = (winner) => {
   msgContainer.style.display = "flex";
 };
 
-//Function to check the winner and do all the main things
+//Function to check the winner and do all the main things(Main Function)
 const winnerCheck = () => {
   for (let pattern of winningPatterns) {
     // console.log(pattern[0], pattern[1],pattern[2]);
