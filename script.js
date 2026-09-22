@@ -7,6 +7,7 @@ let player1=document.querySelector("#p1");
 let play1=1;
 let player2=document.querySelector("#p2");
 let play2=1;
+let count=0;
 
 //Conditions of winning game
 let winningPatterns = [
@@ -31,12 +32,18 @@ boxes.forEach((box) => {
       box.innerText = "O";
       player = true;
     }
-    console.log("Box Clicked!");
+    count=count+1;
     box.disabled = true;
     winnerCheck();
     
   });
 });
+
+//Function to draw the game
+const showDraw = () => {
+    msg.innerText = "Game Draw!";
+    msgContainer.style.display = "flex";
+};
 
 //Function to reset the game fully and also used for new game to play
 const resetGame=()=>{
@@ -69,39 +76,42 @@ const showWinner = (winner) => {
 
 //Function to check the winner and do all the main things(Main Function)
 const winnerCheck = () => {
-  for (let pattern of winningPatterns) {
-    // console.log(pattern[0], pattern[1],pattern[2]);
-    // console.log(boxes[pattern[0]], boxes[pattern[1]],boxes[pattern[2]]);
-    // console.log(
-    //     box[pattern[0]].innerText,
-    //     box[pattern[1]].innerText,
-    //     box[pattern[2]].innerText,
-    // );
 
-    let pos1Value = boxes[pattern[0]].innerText;
-    let pos2Value = boxes[pattern[1]].innerText;
-    let pos3Value = boxes[pattern[2]].innerText;
+    for (let pattern of winningPatterns) {
 
-    //Conditions to win the games
-    if (pos1Value != "" && pos2Value != "" && pos3Value != "") {
-      if (pos1Value === pos2Value && pos2Value === pos3Value) {
-        showWinner(pos1Value); //Winner Function
-        DisabledButtons();  //Function to disable the buttons
+        let pos1Value = boxes[pattern[0]].innerText;
+        let pos2Value = boxes[pattern[1]].innerText;
+        let pos3Value = boxes[pattern[2]].innerText;
 
-        //Condition to count the number of wins for each player in the game
-        if (pos1Value==="X"){
-            player1.innerText=play1;
-            play1=play1+1;
+        if (pos1Value != "" && pos2Value != "" && pos3Value != "") {
+
+            if (pos1Value === pos2Value && pos2Value === pos3Value) {
+
+                showWinner(pos1Value);
+                DisabledButtons();
+
+                if (pos1Value === "X") {
+                    player1.innerText = play1;
+                    play1 = play1 + 1;
+                }
+                else if (pos1Value === "O") {
+                    player2.innerText = play2;
+                    play2 = play2 + 1;
+                }
+
+                return;
+            }
         }
-        else if (pos1Value==="O"){
-            player2.innerText=play2;
-            play2=play2+1;
-        }
-        return;
-      }
     }
-  }
+
+    // If nobody won and all 9 boxes are filled
+    if (count == 9) {
+        console.log("Game Draw");
+        showDraw();
+        DisabledButtons();
+    }
 };
+
 
 //use event to initilize the new game function and than the game will be start from the beginning
 newgame.addEventListener("click", resetGame); 
